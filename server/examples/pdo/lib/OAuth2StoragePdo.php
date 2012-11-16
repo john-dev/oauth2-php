@@ -114,7 +114,7 @@ class OAuth2StoragePDO implements IOAuth2GrantCode, IOAuth2RefreshTokens {
 			$result = $stmt->fetch(PDO::FETCH_ASSOC);
 			
 			if ($client_secret === NULL) {
-				return $result !== FALSE;
+				return $result === FALSE;//must be false, else the client_secret parameter can be passed
 			}
 			
 			return $this->checkPassword($client_secret, $result['client_secret'], $client_id);
